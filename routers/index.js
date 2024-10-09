@@ -10,3 +10,5 @@ const customerRoute = require('./customer.js')
 
 router.use('/admin', adminRoute)
 router.use('/customer', customerRoute)
+
+module.exports = router
