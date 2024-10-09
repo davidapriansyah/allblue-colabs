@@ -1,40 +1,37 @@
-{
-    "users": [
-      {
-        "id": 1,
-        "name": "Ahmad Santoso",
-        "email": "ahmad@example.com",
-        "password": "password123",
-        "role": "admin"
-      },
-      {
-        "id": 2,
-        "name": "Budi Wijaya",
-        "email": "budi@example.com",
-        "password": "securepassword",
-        "role": "customer"
-      },
-      {
-        "id": 3,
-        "name": "Citra Dewi",
-        "email": "citra@example.com",
-        "password": "citra123",
-        "role": "customer"
-      },
-      {
-        "id": 4,
-        "name": "Dian Prasetyo",
-        "email": "dian@example.com",
-        "password": "mypassword456",
-        "role": "customer"
-      },
-      {
-        "id": 5,
-        "name": "Eka Susanti",
-        "email": "eka@example.com",
-        "password": "eka987",
-        "role": "customer"
-      }
-    ]
+[
+  {
+    "id": 1,
+    "name": "Ahmad Santoso",
+    "email": "ahmad@example.com",
+    "password": "password123",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "name": "Steven Marvel",
+    "email": "steven@example.com",
+    "password": "securepassword",
+    "role": "customer"
+  },
+  {
+    "id": 3,
+    "name": "Citra Dewi",
+    "email": "citra@example.com",
+    "password": "citra123",
+    "role": "customer"
+  },
+  {
+    "id": 4,
+    "name": "Dian Prasetyo",
+    "email": "dian@example.com",
+    "password": "mypassword456",
+    "role": "customer"
+  },
+  {
+    "id": 5,
+    "name": "Eka Susanti",
+    "email": "eka@example.com",
+    "password": "eka987",
+    "role": "customer"
   }
-  
+]
