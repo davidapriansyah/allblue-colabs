@@ -4,6 +4,25 @@ class Controller {
     static async adminHome (req, res) {
         try {
             
+            res.render('homeAdmin')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+    static async renderLogAdmin (req, res) {
+        try {
+            
+            res.render('logAdmin')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+    static async handleLogAdmin (req, res) {
+        try {
+            
+            res.redirect('/')
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -14,6 +33,8 @@ class Controller {
     static async category (req, res) {
         try {
             
+
+         res.render('categoryList')
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -23,6 +44,7 @@ class Controller {
     static async user (req, res) {
         try {
             
+         res.render('userProfile')
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -55,6 +77,7 @@ class Controller {
     static async product (req, res) {
         try {
             
+            res.render('listProduct')
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -103,6 +126,7 @@ class Controller {
     static async order (req, res) {
         try {
             
+            res.render('order')
         } catch (error) {
             console.log(error)
             res.send(error)
