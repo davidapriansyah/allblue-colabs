@@ -1,53 +1,50 @@
-{
-    "products": [
-      {
-        "id": 1,
-        "name": "Ikan Gurame",
-        "CategoryId": 1,
-        "price": 50000,
-        "stock": 100,
-        "imageURL": "https://example.com/images/ikan-gurame.jpg"
-      },
-      {
-        "id": 2,
-        "name": "Ikan Lele",
-        "CategoryId": 1,
-        "price": 15000,
-        "stock": 200,
-        "imageURL": "https://example.com/images/ikan-lele.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Ikan Patin",
-        "CategoryId": 1,
-        "price": 30000,
-        "stock": 150,
-        "imageURL": "https://example.com/images/ikan-patin.jpg"
-      },
-      {
-        "id": 4,
-        "name": "Ikan Kakap Merah",
-        "CategoryId": 1,
-        "price": 70000,
-        "stock": 80,
-        "imageURL": "https://example.com/images/ikan-kakap-merah.jpg"
-      },
-      {
-        "id": 5,
-        "name": "Ikan Tuna",
-        "CategoryId": 2,
-        "price": 85000,
-        "stock": 50,
-        "imageURL": "https://example.com/images/ikan-tuna.jpg"
-      },
-      {
-        "id": 6,
-        "name": "Ikan Tongkol",
-        "CategoryId": 2,
-        "price": 40000,
-        "stock": 120,
-        "imageURL": "https://example.com/images/ikan-tongkol.jpg"
-      }
-    ]
+[
+  {
+    "id": 1,
+    "name": "Ikan Gurame",
+    "CategoryId": 1,
+    "price": 50000,
+    "stock": 100,
+    "imageUrl": "https://example.com/images/ikan-gurame.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Ikan Lele",
+    "CategoryId": 1,
+    "price": 15000,
+    "stock": 200,
+    "imageUrl": "https://example.com/images/ikan-lele.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Ikan Patin",
+    "CategoryId": 1,
+    "price": 30000,
+    "stock": 150,
+    "imageUrl": "https://example.com/images/ikan-patin.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Ikan Kakap Merah",
+    "CategoryId": 1,
+    "price": 70000,
+    "stock": 80,
+    "imageUrl": "https://example.com/images/ikan-kakap-merah.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Ikan Tuna",
+    "CategoryId": 2,
+    "price": 85000,
+    "stock": 50,
+    "imageUrl": "https://example.com/images/ikan-tuna.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Ikan Tongkol",
+    "CategoryId": 2,
+    "price": 40000,
+    "stock": 120,
+    "imageUrl": "https://example.com/images/ikan-tongkol.jpg"
   }
-  
+]
