@@ -1,0 +1,41 @@
+{
+    "orders": [
+      {
+        "UserId": 1,
+        "ProductId": 2,
+        "quantity": 5,
+        "orderDate": "2024-10-08"
+      },
+      {
+        "UserId": 1,
+        "ProductId": 5,
+        "quantity": 2,
+        "orderDate": "2024-10-08"
+      },
+      {
+        "UserId": 2,
+        "ProductId": 1,
+        "quantity": 10,
+        "orderDate": "2024-10-07"
+      },
+      {
+        "UserId": 3,
+        "ProductId": 4,
+        "quantity": 3,
+        "orderDate": "2024-10-06"
+      },
+      {
+        "UserId": 2,
+        "ProductId": 2,
+        "quantity": 4,
+        "orderDate": "2024-10-06"
+      },
+      {
+        "UserId": 4,
+        "ProductId": 3,
+        "quantity": 8,
+        "orderDate": "2024-10-05"
+      }
+    ]
+  }
+  
