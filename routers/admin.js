@@ -1,6 +1,36 @@
-const express = require('express')
+const express = require('express') 
 const router = express.Router()
 const Controller = require('../controllers/controller.js')
+const multer  = require('multer')
+const path = require('path')
+
+
+// // Set up storage configuration for Multer
+// const storage = multer.diskStorage({
+//     destination: './public/images/uploads/',
+//     filename: function (req, file, cb) {
+//       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // Rename the file
+//     },
+//   });
+
+//   // Initialize multer with the storage configuration
+// const upload = multer({ 
+//   storage: storage,
+//   limits: {fileSize:1000000},
+//   fileFilter: function(req,file,cb){
+//     checkFileType(file,cb);
+//   }).single('imageUrl');
+
+
+
+// // Define a route for file uploads
+// app.post('/upload', upload.single('file'), (req, res) => {
+//   if (!req.file) {
+//     return res.status(400).send('No file uploaded.');
+//   }
+//   res.send(`File uploaded successfully: ${req.file.filename}`);
+// });
+
 
 router.get('/', Controller.adminHome)
 router.get('/categories', Controller.category)
