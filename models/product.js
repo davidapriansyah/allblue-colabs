@@ -27,11 +27,70 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product.init({
-    name: DataTypes.STRING,
-    CategoryId: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER,
-    imageUrl: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: `Product name can't be null`
+        },
+        notEmpty:{
+          msg: `Product name is required`
+        }
+      }
+    },
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: `Category Id can't be null`
+        },
+        notEmpty:{
+          msg: `Category Id is required`
+        }
+      }          
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: `Price can't be null`
+        },
+        notEmpty:{
+          msg: `Price is required`
+        },
+        min:{args: 10_000, msg: "Please input price between 10.000-1.000.000"},
+        max:{args: 1_000_000, msg: "Please input price between 10.000-1.000.000"}, 
+      }          
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: `stock can't be null`
+        },
+        notEmpty:{
+          msg: `stock is required`
+        },
+        min:{args: 1, msg: "Please input stock between 1-1000"},
+        max:{args: 1000, msg: "Please input stock between 1-1000"}, 
+      }          
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull:{
+          msg: `image url can't be null`
+        },
+        notEmpty:{
+          msg: `image url is required`
+        }
+      }     
+    }
   }, {
     sequelize,
     modelName: 'Product',
