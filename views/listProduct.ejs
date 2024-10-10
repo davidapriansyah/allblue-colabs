@@ -40,18 +40,21 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Example data row -->
+                <% dataProducts.forEach(el => { %>
+                 
+
                 <tr>
-                    <td>Example Fish</td>
-                    <td>Category A</td>
-                    <td>$10.00</td>
-                    <td>100</td>
-                    <td><img src="https://via.placeholder.com/100" alt="Fish" class="img-fluid"></td>
+                    <td> <%= el.name %> </td>
+                    <td> <%= el.Category.name %> </td>
+                    <td> <%= el.price %> </td>
+                    <td> <%= el.stock %> </td>
+                    <td> <img src="<%= el.imageUrl %>" alt="<%= el.name %>" width="100px" height="100px">  </td>
                     <td>
-                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="/admin/products/edit/<%= el.id %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/admin/products/delete/<%= el.id %>" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
+                <% }) %>
                 <!-- Tambahkan lebih banyak data produk di sini -->
             </tbody>
         </table>
