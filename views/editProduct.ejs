@@ -48,9 +48,18 @@
 
     <div class="content">
         <div class="container-fluid mt-4">
+
+            <% if (errors.length) { %>
+                <% errors.forEach(el => { %>
+                    <p style="color:red"><%= el %></p>
+                <% }) %>
+             
+            <% } %>
+
+            
             <h1 class="text-center">Edit Product</h1>
             
-            <form action="/admin/products/edit/<%= id %>" method="post">
+            <form action="/admin/products/edit/<%= id %>" method="post" enctype="multipart/form-data">
                 <label>Name</label><br>
                 <input type="text" name="name" value="<%= dataProduct.name %>"> <br>
 
@@ -70,8 +79,10 @@
                 <input type="text" name="stock"  value="<%= dataProduct.stock  %>"> <br>
  
                 <label>Image</label><br>
-                <input type="text" name="imageUrl"  value="<%= dataProduct.imageUrl %>"><br>
- 
+                <img src="<%= dataProduct.imageUrl %>" alt="" width="100px" height="100px"> <br>
+                <input type="file" name="imageUrl"  value="<%= dataProduct.imageUrl %>"><br>
+                <br>
+
                 <button type="submit">Submit</button>
             </form>
 
