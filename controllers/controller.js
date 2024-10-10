@@ -1,4 +1,5 @@
 const {User, Profile, Product, Order, Category} = require('../models/index.js')
+const bcrypt = require('bcryptjs')
 
 class Controller {
     static async adminHome (req, res) {
@@ -21,11 +22,10 @@ class Controller {
     }
     static async handleLogAdmin (req, res) {
         try {
-            
-            res.redirect('/')
+           
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            console.log(error);
+            res.status(500).send('Internal Server Error');
         }
     }
 
@@ -62,33 +62,20 @@ class Controller {
     }
     static async renderEditUser (req, res) {
         try {
-            // res.send('edit user')
-            const {id} = req.params
-            // const dataUserProfile = await User.findOne({
-            //     where:{id:id},
-            //     include: {
-            //         model: Profile,
-            //         attributes:{
-            //             exclude:['createdAt', 'updatedAt']
-            //         }
-            //     },
-
-            // })
-            // res.send(dataUserProfile)
-            // res.render('editUser.ejs',{dataUserProfile, id})
-            
-            //reset password jadi 123456
+            const { id } = req.params;
+            const hashedPassword = await bcrypt.hash('123456', 10); // Hash password
+    
+            // Update password user
             await User.update(
-                {password: '123456'}, 
-                {where:{id:id}}
-            )
-
-            console.log('Sukses reset password')
-            res.redirect('/admin/users')
-
+                { password: hashedPassword },
+                { where: { id: id } }
+            );
+    
+            console.log('Sukses reset password');
+            res.redirect('/admin/users');
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            console.log(error);
+            res.send(error);
         }
     }
     static async handleEditUser (req, res) {
@@ -234,51 +221,25 @@ class Controller {
         }
     }
 
-    static async renderLogUser (req, res) {
-        try {
-            
-
-            res.render('logUser')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async handleLogUser (req, res) {
-        try {
-            
-            res.render('/')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async renderRegUser (req, res) {
-        try {
-            
-            res.render('registerUser')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async handleRegUser (req, res) {
-        try {
-            
-            res.redirect('/loginUser')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
+  
+    
 
     static async getCatalog (req, res) {
         try {
-            
-            res.render('catalog')
+                // res.send('product')
+                const dataProducts = await Product.findAll({
+                    attributes:{
+                        exclude:['ProductId']
+                    },
+                    include:{
+                        model:Category,
+                        attributes:{
+                            exclude: ['createdAt', 'updatedAt']
+                        }
+                    }
+                })
+
+            res.render( 'catalog', {dataProducts}) 
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -321,6 +282,57 @@ class Controller {
             res.send(error)
         }
     }
-}
 
+    static async renderRegUser (req, res) {
+        try {
+            res.render('registerUser')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async handleRegUser (req, res) {
+        try {
+            const { name, password, email, phoneNumber, shippingAddress } = req.body;
+            const hashedPassword = await bcrypt.hash(password, 10); // Hash password
+    
+            const newUser = await User.create({
+                name,
+                password: hashedPassword,
+                email
+            });
+    
+            await Profile.create({
+                phoneNumber,
+                shippingAddress,
+                UserId: newUser.id
+            });
+    
+            res.redirect('/loginUser');
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    }
+
+    static async renderLogUser (req, res) {
+        try {
+            const {error} = req.query
+            res.render('logUser', {error})
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async handleLogUser (req, res) {
+        try {
+            res.redirect('/')
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        }
+ }
+}
 module.exports = Controller
