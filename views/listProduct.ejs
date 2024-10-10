@@ -22,7 +22,7 @@
 </head>
 <body>
     <%- include('./partials/navbarAdmin.ejs') %>
-
+    
     <div class="content">
         <h2 class="text-center mb-4">Product List</h2>
         <div class="text-center mb-3">
@@ -48,7 +48,7 @@
                     <td> <%= el.id %> </td>
                     <td> <%= el.name %> </td>
                     <td> <%= el.Category.name %> </td>
-                    <td> <%= el.price %> </td>
+                    <td> <%= formatRupiah(el.price) %> </td>
                     <td> <%= el.stock %> </td>
                     <td> <img src="<%= el.imageUrl %>" alt="<%= el.name %>" width="100px" height="100px">  </td>
                     <td>

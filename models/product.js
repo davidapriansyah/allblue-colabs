@@ -61,8 +61,8 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty:{
           msg: `Price is required`
         },
-        min:{args: 100_000, msg: "Please input price between 100.000-1.000.000"},
-        max:{args: 1_000_000, msg: "Please input price between 100.000-1.000.000"}, 
+        min:{args: 10_000, msg: "Please input price between 10.000-1.000.000"},
+        max:{args: 1_000_000, msg: "Please input price between 10.000-1.000.000"}, 
       }          
     },
     stock: {
@@ -75,8 +75,8 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty:{
           msg: `stock is required`
         },
-        min:{args: 1, msg: "Please input stock between 1-100"},
-        max:{args: 100, msg: "Please input stock between 1-100"}, 
+        min:{args: 1, msg: "Please input stock between 1-1000"},
+        max:{args: 1000, msg: "Please input stock between 1-1000"}, 
       }          
     },
     imageUrl: {

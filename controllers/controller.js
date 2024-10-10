@@ -1,4 +1,5 @@
 const { User, Profile, Product, Order, Category } = require('../models/index.js')
+const formatRupiah = require('../helpers/formatRupiah.js')
 
 class Controller {
     static async adminHome(req, res) {
@@ -148,7 +149,7 @@ class Controller {
                 }
             })
             // res.send(dataProducts)
-            res.render('listProduct', { dataProducts })
+            res.render('listProduct', { dataProducts, formatRupiah })
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -186,7 +187,7 @@ class Controller {
                 CategoryId,
                 price,
                 stock,
-                imageUrl
+                imageUrl:`/uploads/${req.file.filename}`,
             }, { returning: false })
 
             res.redirect('/admin/products')
@@ -207,6 +208,14 @@ class Controller {
     static async renderEditProduct(req, res) {
         try {
             // res.send('edit product')
+
+            let errors = ''
+            if (req.query.errors) {
+                errors = req.query.errors.split(',')
+            }
+            console.log(errors, '<<< errors')
+
+
             const { id } = req.params
             // res.send(req.params)
             const dataProduct = await Product.findOne({
@@ -224,7 +233,7 @@ class Controller {
             const dataCategory = await Category.findAll()
 
             // res.send(dataProduct)
-            res.render('editProduct', { dataProduct, id, dataCategory })
+            res.render('editProduct', { dataProduct, id, dataCategory, errors })
 
         } catch (error) {
             console.log(error)
@@ -243,7 +252,7 @@ class Controller {
                     CategoryId,
                     price,
                     stock,
-                    imageUrl,
+                    imageUrl:`/uploads/${req.file.filename}`,
                 },
                 {
                     where: { id: id }
@@ -252,8 +261,17 @@ class Controller {
             console.log('Sukses Update')
             res.redirect('/admin/products/')
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            // console.log(error, '<<<<<<<< error')
+            if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
+                // console.log(error.errors, '<<< error.errors')
+                // res.send(error.errors)
+                const errMessages = error.errors.map(el => el.message)
+                console.log(errMessages, '<<< errMessages')
+                res.redirect(`/admin/products/add?errors=${errMessages}`)
+            } else {
+
+                res.send(error.message)
+            }
         }
     }
     static async deleteProduct(req, res) {
