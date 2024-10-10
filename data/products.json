@@ -5,7 +5,7 @@
     "CategoryId": 1,
     "price": 50000,
     "stock": 100,
-    "imageUrl": "https://example.com/images/ikan-gurame.jpg"
+    "imageUrl": "https://manfaat.co.id/wp-content/uploads/2015/04/ikan-gurame.jpg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "CategoryId": 1,
     "price": 15000,
     "stock": 200,
-    "imageUrl": "https://example.com/images/ikan-lele.jpg"
+    "imageUrl": "https://media.suara.com/pictures/653x366/2023/12/12/14266-ilustrasi-ikan-lele-unsplashwill-turner.jpg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "CategoryId": 1,
     "price": 30000,
     "stock": 150,
-    "imageUrl": "https://example.com/images/ikan-patin.jpg"
+    "imageUrl": "https://lenteradesa.id/api/v1/assets/article/ikan%20patin_1665646247.jpg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "CategoryId": 1,
     "price": 70000,
     "stock": 80,
-    "imageUrl": "https://example.com/images/ikan-kakap-merah.jpg"
+    "imageUrl": "https://1.bp.blogspot.com/-ECquj8oZaMk/VQwX8uSYATI/AAAAAAAACFI/2uMR-TcRMdI/s1600/Ikan%2BMerah%2BPucat.png"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "CategoryId": 2,
     "price": 85000,
     "stock": 50,
-    "imageUrl": "https://example.com/images/ikan-tuna.jpg"
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEga0z0sm8wpY5ylTRw0I4BRK7EOUwmfzDkytqGxrmZdGCpcAa4PR00Syi7BKnL9NJ4A0IQgirmZOXVD6diwjOFA_M5EuXVnyZiRqotNpKpl8wGT1RYTCJ_pCmZ25ARClzIoegDjZPMHDMw/s1600/Tuna+Mata+Besar.png"
   },
   {
     "id": 6,
@@ -45,6 +45,22 @@
     "CategoryId": 2,
     "price": 40000,
     "stock": 120,
-    "imageUrl": "https://example.com/images/ikan-tongkol.jpg"
-  }
+    "imageUrl": "https://dkp.jatimprov.go.id/public/uploads/news-3215.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Ikan Salmon",
+    "CategoryId": 2,
+    "price": 50000,
+    "stock": 70,
+    "imageUrl": "https://linimassa.id/wp-content/uploads/2023/12/Ikan-Salmon-Linimassa.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Ikan Kerapu",
+    "CategoryId": 2,
+    "price": 60000,
+    "stock": 90,
+    "imageUrl": "https://linimassa.id/wp-content/uploads/2023/12/Ikan-Salmon-Linimassa.jpg"
+  } 
 ]

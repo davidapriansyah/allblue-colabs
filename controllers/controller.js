@@ -311,6 +311,106 @@ class Controller {
             res.send(error)
         }
     }
+
+
+    //STATIC ASYNC KHUSUS LOGIN ATAU LANDING PAGE USER
+    static async landingPage (req, res) {
+        try {
+            
+            res.render('homepage')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async renderLogUser (req, res) {
+        try {
+            
+
+            res.render('logUser')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async handleLogUser (req, res) {
+        try {
+            
+            res.render('/')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async renderRegUser (req, res) {
+        try {
+            
+            res.render('registerUser')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async handleRegUser (req, res) {
+        try {
+            
+            res.redirect('/loginUser')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async getCatalog (req, res) {
+        try {
+            
+            res.render('catalog')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async profileDetail (req, res) {
+        try {
+            
+            res.render('profil')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+    static async cartDetail (req, res) {
+        try {
+            
+            res.render('order')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+    static async buyProduct (req, res) {
+        try {
+            
+            res.render('order')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+    static async payment (req, res) {
+        try {
+            
+            res.render('order')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
 }
 
 module.exports = Controller
