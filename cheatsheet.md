@@ -101,3 +101,8 @@
 
     [//]: # (jalankan semua seed)
     npx sequelize-cli db:seed:all
+
+
+**create new migration**
+ [//]: # (add description to model Category)
+    npx sequelize-cli migration:create --name addDescriptionToCateogory
