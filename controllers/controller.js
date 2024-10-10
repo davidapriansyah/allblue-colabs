@@ -187,7 +187,7 @@ class Controller {
                 CategoryId,
                 price,
                 stock,
-                imageUrl:`/uploads/${req.file.filename}`,
+                imageUrl: `/uploads/${req.file.filename}`,
             }, { returning: false })
 
             res.redirect('/admin/products')
@@ -252,7 +252,7 @@ class Controller {
                     CategoryId,
                     price,
                     stock,
-                    imageUrl:`/uploads/${req.file.filename}`,
+                    imageUrl: `/uploads/${req.file.filename}`,
                 },
                 {
                     where: { id: id }
@@ -294,36 +294,21 @@ class Controller {
     static async order(req, res) {
         try {
 
-
-            // const dataOrders = await User.findAll({
-            //     include: {
-            //         model: Order,
-            //         include: {
-            //             model: Product,
-            //             attributes: { exclude: ['ProductId'] },
-            //         }
-            //     },
-
-            // })
-
             const dataOrders = await Order.findAll({
-                include: {
-                    model: User,
-                    include: {
+                include: [
+                    {
+                        model: User,
+                        attributes: { exclude: ['password'] }, // Exclude sensitive data
+                    },
+                    {
                         model: Product,
                         attributes: { exclude: ['ProductId'] },
-                    }
-                },
+                    },
+                ],
+            });
 
-            })
-            
-            // const data = await Order.findAll({
-            //     include: [User, Product]
-            //   })
-
-
-            res.send(dataOrders)
-            // res.render('order')
+            // res.send(dataOrders)
+            res.render('order', {dataOrders})
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -332,9 +317,9 @@ class Controller {
 
 
     //STATIC ASYNC KHUSUS LOGIN ATAU LANDING PAGE USER
-    static async landingPage (req, res) {
+    static async landingPage(req, res) {
         try {
-            
+
             res.render('homepage')
         } catch (error) {
             console.log(error)
@@ -342,9 +327,9 @@ class Controller {
         }
     }
 
-    static async renderLogUser (req, res) {
+    static async renderLogUser(req, res) {
         try {
-            
+
 
             res.render('logUser')
         } catch (error) {
@@ -353,9 +338,9 @@ class Controller {
         }
     }
 
-    static async handleLogUser (req, res) {
+    static async handleLogUser(req, res) {
         try {
-            
+
             res.render('/')
         } catch (error) {
             console.log(error)
@@ -363,9 +348,9 @@ class Controller {
         }
     }
 
-    static async renderRegUser (req, res) {
+    static async renderRegUser(req, res) {
         try {
-            
+
             res.render('registerUser')
         } catch (error) {
             console.log(error)
@@ -373,9 +358,9 @@ class Controller {
         }
     }
 
-    static async handleRegUser (req, res) {
+    static async handleRegUser(req, res) {
         try {
-            
+
             res.redirect('/loginUser')
         } catch (error) {
             console.log(error)
@@ -383,9 +368,9 @@ class Controller {
         }
     }
 
-    static async getCatalog (req, res) {
+    static async getCatalog(req, res) {
         try {
-            
+
             res.render('catalog')
         } catch (error) {
             console.log(error)
@@ -393,36 +378,36 @@ class Controller {
         }
     }
 
-    static async profileDetail (req, res) {
+    static async profileDetail(req, res) {
         try {
-            
+
             res.render('profil')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async cartDetail (req, res) {
+    static async cartDetail(req, res) {
         try {
-            
+
             res.render('order')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async buyProduct (req, res) {
+    static async buyProduct(req, res) {
         try {
-            
+
             res.render('order')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async payment (req, res) {
+    static async payment(req, res) {
         try {
-            
+
             res.render('order')
         } catch (error) {
             console.log(error)

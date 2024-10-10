@@ -68,7 +68,7 @@
                             <td><%= el.name %> </td>
                             <td><%= el.password %> </td>
                             <td><%= el.email %> </td>
-                            <td><%= el.Profile ? el.Profile.phoneNumber : '-'%> </td>
+                            <td><%= el.Profile ? el.Profile.formatPhoneNumber : '-'%> </td>
                             <td><%= el.Profile?.shippingAddress || '-'%> </td>
                             
                             <td class="action-buttons">
