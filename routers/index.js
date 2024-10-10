@@ -8,6 +8,8 @@ const Controller = require('../controllers/controller.js')
 // })
 router.get('/loginAdmin', Controller.renderLogAdmin)
 router.post('/loginAdmin', Controller.handleLogAdmin)
+router.get('/loginUser', Controller.renderLogUser)
+router.post('/loginUser', Controller.handleLogUser)
 
 router.use('/admin', adminRoute)
 router.use('/customer', customerRoute)
