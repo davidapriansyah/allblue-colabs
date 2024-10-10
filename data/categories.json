@@ -1,12 +1,13 @@
  [
       {
         "id": 1,
-        "name": "Ikan Air Tawar"
-
+        "name": "Ikan Air Tawar",
+        "description": "All ikan air tawar"
       },
       {
         "id": 2,
-        "name": "Ikan Laut"
+        "name": "Ikan Laut",
+        "description": "All ikan air Asin"
 
       }
     

@@ -1,5 +1,7 @@
 const {User, Profile, Product, Order, Category} = require('../models/index.js')
 const bcrypt = require('bcryptjs')
+const formatRupiah = require('../helpers/formatRupiah.js')
+const {Op} =  require('sequelize')
 
 class Controller {
     static async adminHome (req, res) {
@@ -133,7 +135,7 @@ class Controller {
                 }
             })
             // res.send(dataProducts)
-            res.render('listProduct',{dataProducts})
+            res.render('listProduct',{dataProducts, formatRupiah})
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -276,23 +278,40 @@ class Controller {
 
     static async getCatalog (req, res) {
         try {
-                // res.send('product')
-                const dataProducts = await Product.findAll({
-                    attributes:{
-                        exclude:['ProductId']
-                    },
-                    include:{
-                        model:Category,
-                        attributes:{
-                            exclude: ['createdAt', 'updatedAt']
-                        }
+            // Get search query from the request (if any)
+            const { search } = req.query;
+            
+            // Define the query object
+            let query = {
+                attributes: {
+                    exclude: ['ProductId']
+                },
+                include: {
+                    model: Category,
+                    attributes: {
+                        exclude: ['createdAt', 'updatedAt']
                     }
-                })
-
-            res.render( 'catalog', {dataProducts}) 
+                }
+            };
+    
+            // If there is a search term, modify the query to filter products by name
+            if (search) {
+                query.where = {
+                    name: {
+                        [Op.iLike]: `%${search}%`  // Case-insensitive search
+                    }
+                };
+            }
+    
+            // Fetch the filtered products based on the search term
+            const dataProducts = await Product.findAll(query);
+    
+            // Render the catalog view with the filtered products
+            res.render('catalog', { dataProducts });
+    
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            console.log(error);
+            res.send(error);
         }
     }
 
