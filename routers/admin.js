@@ -3,8 +3,6 @@ const router = express.Router()
 const Controller = require('../controllers/controller.js')
 
 router.get('/', Controller.adminHome)
-router.get('/loginAdmin', Controller.renderLogAdmin)
-router.post('/loginAdmin', Controller.handleLogAdmin)
 router.get('/categories', Controller.category)
 router.get('/users', Controller.user)
 router.get('/users/edit/:id', Controller.renderEditUser)
