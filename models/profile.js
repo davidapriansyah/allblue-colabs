@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 const {
   Model
 } = require('sequelize');
@@ -11,18 +11,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Profile.belongsTo(models.User,{
+      Profile.belongsTo(models.User, {
         foreignKey: 'UserId'
       })
     }
-  }
-  Profile.init({
-    phoneNumber: DataTypes.STRING,
-    shippingAddress: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Profile',
-  });
-  return Profile;
+
+    get formatPhoneNumber() {
+      const str = this.phoneNumber
+      const part1 = str.slice(0, 4);  // First 4 digits
+      const part2 = str.slice(4, 8);  // Next 4 digits
+      const part3 = str.slice(8);     // Last 3 digits
+
+      return `${part1}-${part2}-${part3}`;
+    }
+  
+}
+Profile.init({
+  phoneNumber: DataTypes.STRING,
+  shippingAddress: DataTypes.STRING,
+  UserId: DataTypes.INTEGER
+}, {
+  sequelize,
+  modelName: 'Profile',
+});
+return Profile;
 };

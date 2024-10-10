@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       //cara 2: Many to Many
-      Product.belongsToMany(models.User, {
-        through: 'Order'
-      })
+      // Product.belongsToMany(models.User, {
+      //   through: 'Order'
+      // })
     }
   }
   Product.init({

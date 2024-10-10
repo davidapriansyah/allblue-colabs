@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'UserId'
       })
 
-      //cara 2: Many to Many
-      User.belongsToMany(models.Product,{
-        through: 'Order'
-      })
+      // //cara 2: Many to Many
+      // User.belongsToMany(models.Product,{
+      //   through: 'Order'
+      // })
 
     }
   }

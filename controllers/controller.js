@@ -149,7 +149,21 @@ class Controller {
     }
     static async handleAddProduct (req, res) {
         try {
-            
+            // res.send(req.body)
+            const { name, CategoryId, price, stock, imageUrl } = req.body
+            // console.log(req.body, '<<< req.body')
+            // const { imageUrl } = req.file
+            // console.log(req.file, '<<<<reg file')
+
+            await Product.create({
+                name,
+                CategoryId,
+                price,
+                stock,
+                imageUrl: `/uploads/${req.file.filename}`,
+            }, { returning: false })
+
+            res.redirect('/admin/products')
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -184,7 +198,26 @@ class Controller {
     }
     static async handleEditProduct (req, res) {
         try {
-            
+
+            // res.send(req.body)
+            const { id } = req.params
+            const { name, CategoryId, price, stock, imageUrl } = req.body
+
+            await Product.update(
+                {
+                    name,
+                    CategoryId,
+                    price,
+                    stock,
+                    imageUrl: `/uploads/${req.file.filename}`,
+                },
+                {
+                    where: { id: id }
+                }
+            )
+            console.log('Sukses Update')
+            res.redirect('/admin/products/')
+
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -200,8 +233,23 @@ class Controller {
     }
     static async order (req, res) {
         try {
-            
-            res.render('order')
+
+
+            const dataOrders = await Order.findAll({
+                include: [
+                    {
+                        model: User,
+                        attributes: { exclude: ['password'] }, // Exclude sensitive data
+                    },
+                    {
+                        model: Product,
+                        attributes: { exclude: ['ProductId'] },
+                    },
+                ],
+            });
+
+            // res.send(dataOrders)
+            res.render('order', {dataOrders})
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -210,15 +258,18 @@ class Controller {
 
 
     //STATIC ASYNC KHUSUS LOGIN ATAU LANDING PAGE USER
-    static async landingPage (req, res) {
+    static async landingPage(req, res) {
         try {
-            
+
             res.render('homepage')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
+
+    static async renderLogUser(req, res) {
+        try {
 
   
     
@@ -245,6 +296,11 @@ class Controller {
         }
     }
 
+
+    static async handleLogUser(req, res) {
+        try {
+
+            res.render('/')
     static async profileDetail (req, res) {
         try {
             
@@ -254,6 +310,12 @@ class Controller {
             res.send(error)
         }
     }
+
+
+    static async renderRegUser(req, res) {
+        try {
+
+            res.render('registerUser')
     static async cartDetail (req, res) {
         try {
             
@@ -263,33 +325,60 @@ class Controller {
             res.send(error)
         }
     }
+
+
+    static async handleRegUser(req, res) {
+        try {
+
+            res.redirect('/loginUser')
     static async buyProduct (req, res) {
         try {
             
             res.render('order')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-    static async payment (req, res) {
-        try {
-            
-            res.render('order')
+
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
 
-    static async renderRegUser (req, res) {
+
+    static async getCatalog(req, res) {
         try {
-            res.render('registerUser')
+
+            res.render('catalog')
+
+    static async payment (req, res) {
+        try {
+            
+            res.render('order')
+
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
+
+
+    static async profileDetail(req, res) {
+        try {
+
+            res.render('profil')
+
+    static async renderRegUser (req, res) {
+        try {
+            res.render('registerUser')
+
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async cartDetail(req, res) {
+        try {
+
+            res.render('order')
 
     static async handleRegUser (req, res) {
         try {
@@ -309,11 +398,16 @@ class Controller {
             });
     
             res.redirect('/loginUser');
+
         } catch (error) {
             console.log(error);
             res.send(error);
         }
     }
+    static async buyProduct(req, res) {
+        try {
+
+            res.render('order')
 
     static async renderLogUser (req, res) {
         try {
@@ -324,10 +418,15 @@ class Controller {
             res.send(error)
         }
     }
+    static async payment(req, res) {
+        try {
+
+            res.render('order')
 
     static async handleLogUser (req, res) {
         try {
             res.redirect('/')
+
         } catch (error) {
             console.log(error);
             res.status(500).send('Internal Server Error');
