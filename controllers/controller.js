@@ -1,53 +1,51 @@
-const { User, Profile, Product, Order, Category } = require('../models/index.js')
-const formatRupiah = require('../helpers/formatRupiah.js')
+const {User, Profile, Product, Order, Category} = require('../models/index.js')
+const bcrypt = require('bcryptjs')
 
 class Controller {
-    static async adminHome(req, res) {
+    static async adminHome (req, res) {
         try {
-
             res.render('homeAdmin')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async renderLogAdmin(req, res) {
+    static async renderLogAdmin (req, res) {
         try {
-
+            
             res.render('logAdmin')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async handleLogAdmin(req, res) {
+    static async handleLogAdmin (req, res) {
         try {
-
-            res.redirect('/')
+           
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            console.log(error);
+            res.status(500).send('Internal Server Error');
         }
     }
 
 
-    static async category(req, res) {
+    static async category (req, res) {
         try {
             const dataCategories = await Category.findAll({})
             // res.send(dataCategories)
-            res.render('categoryList', { dataCategories })
+            res.render('categoryList', {dataCategories})
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
 
-    static async user(req, res) {
+    static async user (req, res) {
         try {
 
             const dataUserProfile = await User.findAll({
                 order: [['id', 'ASC']],
-                include: {
+                include :{
                     model: Profile,
                     attributes: ['id', 'phoneNumber', 'shippingAddress', 'UserId']
                 }
@@ -55,44 +53,31 @@ class Controller {
             // console.log(dataUserProfile)
             // res.send(dataUserProfile)   
 
-            res.render('userProfile', { dataUserProfile })
+            res.render('userProfile', {dataUserProfile})
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async renderEditUser(req, res) {
+    static async renderEditUser (req, res) {
         try {
-            // res.send('edit user')
-            const { id } = req.params
-            // const dataUserProfile = await User.findOne({
-            //     where:{id:id},
-            //     include: {
-            //         model: Profile,
-            //         attributes:{
-            //             exclude:['createdAt', 'updatedAt']
-            //         }
-            //     },
-
-            // })
-            // res.send(dataUserProfile)
-            // res.render('editUser.ejs',{dataUserProfile, id})
-
-            //reset password jadi 123456
+            const { id } = req.params;
+            const hashedPassword = await bcrypt.hash('123456', 10); // Hash password
+    
+            // Update password user
             await User.update(
-                { password: '123456' },
+                { password: hashedPassword },
                 { where: { id: id } }
-            )
-
-            console.log('Sukses reset password')
-            res.redirect('/admin/users')
-
+            );
+    
+            console.log('Sukses reset password');
+            res.redirect('/admin/users');
         } catch (error) {
-            console.log(error)
-            res.send(error)
+            console.log(error);
+            res.send(error);
         }
     }
-    static async handleEditUser(req, res) {
+    static async handleEditUser (req, res) {
         try {
             // res.send('handle edit user')
             // res.send(req.body)
@@ -111,19 +96,19 @@ class Controller {
             res.send(error)
         }
     }
-    static async deleteUser(req, res) {
+    static async deleteUser (req, res) {
         try {
-            const { id } = req.params
+            const {id} = req.params
             // console.log(req.params, '<<< req.params')
 
             await Profile.destroy({
-                where: {
+                where:{
                     UserId: id
                 }
             })
 
             await User.destroy({
-                where: { id: id }
+                where:{id:id}
             })
 
             console.log('Sukses delete')
@@ -133,48 +118,36 @@ class Controller {
             res.send(error)
         }
     }
-    static async product(req, res) {
+    static async product (req, res) {
         try {
             // res.send('product')
             const dataProducts = await Product.findAll({
-                attributes: {
-                    exclude: ['ProductId']
+                attributes:{
+                    exclude:['ProductId']
                 },
-                order: [['id', 'ASC']],
-                include: {
-                    model: Category,
-                    attributes: {
+                include:{
+                    model:Category,
+                    attributes:{
                         exclude: ['createdAt', 'updatedAt']
                     }
                 }
             })
             // res.send(dataProducts)
-            res.render('listProduct', { dataProducts, formatRupiah })
+            res.render('listProduct',{dataProducts})
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async renderAddProduct(req, res) {
+    static async renderAddProduct (req, res) {
         try {
-            // res.send('add product')
-            let errors = ''
-            if (req.query.errors) {
-                errors = req.query.errors.split(',')
-            }
-            // console.log(errors, '<<< errors')
-
-            const dataCategories = await Category.findAll({
-
-            })
-            // res.send(dataCategories)
-            res.render('addProduct', { dataCategories, errors })
+            
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async handleAddProduct(req, res) {
+    static async handleAddProduct (req, res) {
         try {
             // res.send(req.body)
             const { name, CategoryId, price, stock, imageUrl } = req.body
@@ -192,40 +165,23 @@ class Controller {
 
             res.redirect('/admin/products')
         } catch (error) {
-            // console.log(error, '<<<<<<<< error')
-            if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
-                // console.log(error.errors, '<<< error.errors')
-                // res.send(error.errors)
-                const errMessages = error.errors.map(el => el.message)
-                console.log(errMessages, '<<< errMessages')
-                res.redirect(`/admin/products/add?errors=${errMessages}`)
-            } else {
-
-                res.send(error.message)
-            }
+            console.log(error)
+            res.send(error)
         }
     }
-    static async renderEditProduct(req, res) {
+    static async renderEditProduct (req, res) {
         try {
             // res.send('edit product')
-
-            let errors = ''
-            if (req.query.errors) {
-                errors = req.query.errors.split(',')
-            }
-            console.log(errors, '<<< errors')
-
-
-            const { id } = req.params
+            const {id} = req.params
             // res.send(req.params)
             const dataProduct = await Product.findOne({
-                attributes: {
-                    exclude: ['ProductId']
+                attributes:{
+                    exclude:['ProductId']
                 },
-                where: {
-                    id: id
+                where:{
+                    id:id
                 },
-                include: {
+                include:{
                     model: Category
                 }
             })
@@ -233,15 +189,16 @@ class Controller {
             const dataCategory = await Category.findAll()
 
             // res.send(dataProduct)
-            res.render('editProduct', { dataProduct, id, dataCategory, errors })
+            res.render('editProduct',{dataProduct, id, dataCategory})
 
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async handleEditProduct(req, res) {
+    static async handleEditProduct (req, res) {
         try {
+
             // res.send(req.body)
             const { id } = req.params
             const { name, CategoryId, price, stock, imageUrl } = req.body
@@ -260,39 +217,23 @@ class Controller {
             )
             console.log('Sukses Update')
             res.redirect('/admin/products/')
-        } catch (error) {
-            // console.log(error, '<<<<<<<< error')
-            if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
-                // console.log(error.errors, '<<< error.errors')
-                // res.send(error.errors)
-                const errMessages = error.errors.map(el => el.message)
-                console.log(errMessages, '<<< errMessages')
-                res.redirect(`/admin/products/add?errors=${errMessages}`)
-            } else {
 
-                res.send(error.message)
-            }
-        }
-    }
-    static async deleteProduct(req, res) {
-        try {
-            // res.send('delete Product')
-            const { id } = req.params
-
-            await Product.destroy({
-                where: {
-                    id: id
-                }
-            })
-            console.log('Sukses Delete Product')
-            res.redirect('/admin/products')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async order(req, res) {
+    static async deleteProduct (req, res) {
         try {
+            
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+    static async order (req, res) {
+        try {
+
 
             const dataOrders = await Order.findAll({
                 include: [
@@ -330,76 +271,148 @@ class Controller {
     static async renderLogUser(req, res) {
         try {
 
+  
+    
 
-            res.render('logUser')
+    static async getCatalog (req, res) {
+        try {
+                // res.send('product')
+                const dataProducts = await Product.findAll({
+                    attributes:{
+                        exclude:['ProductId']
+                    },
+                    include:{
+                        model:Category,
+                        attributes:{
+                            exclude: ['createdAt', 'updatedAt']
+                        }
+                    }
+                })
+
+            res.render( 'catalog', {dataProducts}) 
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
+
 
     static async handleLogUser(req, res) {
         try {
 
             res.render('/')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async renderRegUser(req, res) {
+    static async profileDetail (req, res) {
         try {
-
-            res.render('registerUser')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async handleRegUser(req, res) {
-        try {
-
-            res.redirect('/loginUser')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async getCatalog(req, res) {
-        try {
-
-            res.render('catalog')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-
-    static async profileDetail(req, res) {
-        try {
-
+            
             res.render('profil')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
-    static async cartDetail(req, res) {
+
+
+    static async renderRegUser(req, res) {
         try {
 
+            res.render('registerUser')
+    static async cartDetail (req, res) {
+        try {
+            
             res.render('order')
         } catch (error) {
             console.log(error)
             res.send(error)
         }
     }
+
+
+    static async handleRegUser(req, res) {
+        try {
+
+            res.redirect('/loginUser')
+    static async buyProduct (req, res) {
+        try {
+            
+            res.render('order')
+
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+
+    static async getCatalog(req, res) {
+        try {
+
+            res.render('catalog')
+
+    static async payment (req, res) {
+        try {
+            
+            res.render('order')
+
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+
+    static async profileDetail(req, res) {
+        try {
+
+            res.render('profil')
+
+    static async renderRegUser (req, res) {
+        try {
+            res.render('registerUser')
+
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async cartDetail(req, res) {
+        try {
+
+            res.render('order')
+
+    static async handleRegUser (req, res) {
+        try {
+            const { name, password, email, phoneNumber, shippingAddress } = req.body;
+            const hashedPassword = await bcrypt.hash(password, 10); // Hash password
+    
+            const newUser = await User.create({
+                name,
+                password: hashedPassword,
+                email
+            });
+    
+            await Profile.create({
+                phoneNumber,
+                shippingAddress,
+                UserId: newUser.id
+            });
+    
+            res.redirect('/loginUser');
+
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    }
     static async buyProduct(req, res) {
         try {
 
             res.render('order')
+
+    static async renderLogUser (req, res) {
+        try {
+            const {error} = req.query
+            res.render('logUser', {error})
         } catch (error) {
             console.log(error)
             res.send(error)
@@ -409,11 +422,15 @@ class Controller {
         try {
 
             res.render('order')
-        } catch (error) {
-            console.log(error)
-            res.send(error)
-        }
-    }
-}
 
+    static async handleLogUser (req, res) {
+        try {
+            res.redirect('/')
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        }
+ }
+}
 module.exports = Controller

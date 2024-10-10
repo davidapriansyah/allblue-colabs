@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        /* Make the cards more compact */
+
+        .card {
+            margin-top: 100px;
+            height: 80%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reduce the size of the product images */
+        .card-img-top {
+            height: 120px; /* Reduced image height for a smaller appearance */
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        /* Keep card body compact */
+        .card-body {
+            padding: 10px;
+        }
+
+        /* Reduce the footer padding and align buttons neatly */
+        .card-footer {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-top: none;
+        }
+
+        /* Reduce button width for better fit */
+        .btn {
+            width: 48%;
+        }
+    </style>
+</head>
+<body>
+   <%- include('./partials/navbarUser.ejs') %>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            <% dataProducts.forEach(el => { %>
+                <div class="col">
+                    <div class="card">
+                        <img src="<%= el.imageUrl %>" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= el.name %></h5>
+                            <p class="card-text">Jenis ikan: <%= el.Category.name %></p>
+                            <p class="card-text">Stock: <%= el.stock %></p>
+                            <p class="card-text">Harga: Rp <%= el.price %></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <a href="#" class="btn btn-success">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
