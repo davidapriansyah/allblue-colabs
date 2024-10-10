@@ -186,10 +186,20 @@ class Controller {
         }
     }
 
+    static async getCatalog (req, res) {
+        try {
+            
+            res.render('catalog')
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    }
+
     static async profileDetail (req, res) {
         try {
             
-            res.render('order')
+            res.render('profil')
         } catch (error) {
             console.log(error)
             res.send(error)
