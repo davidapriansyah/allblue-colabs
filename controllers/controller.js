@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 class Controller {
     static async adminHome (req, res) {
         try {
-            
+            console.log('')
             res.render('homeAdmin')
         } catch (error) {
             console.log(error)
