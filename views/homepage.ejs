@@ -3,85 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Navbar Example</title>
+    <title>Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             padding-top: 70px;
-        }
-
-        .navbar {
-            background-color: #007bff; /* Warna latar belakang biru */
-        }
-
-        .navbar .nav-link,
-        .navbar .navbar-brand {
-            color: white !important; /* Mengubah warna teks menjadi putih */
-        }
-
-        .navbar .nav-link:hover {
-            color: #ffdd57 !important; /* Mengubah warna teks saat hover */
-        }
-
-        .navbar .navbar-brand {
-            font-weight: bold;
-        }
-
-        .form-inline .btn-outline-success {
-            color: white;
-            border-color: white;
-        }
-
-        .form-inline .btn-outline-success:hover {
-            background-color: white;
-            color: #007bff;
+    background: linear-gradient(to right, #2e85e2, #5ec0e0);
+    color: white;
         }
     </style>
 </head>
 <body>
+<%- include('./partials/navbarUser.ejs') %>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">AllBlue</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Chart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Catalog</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+    <div class="container overlay">
+        <div class="content-section">
+            <div class="description">
+                <h1 style="color: rgb(255, 247, 247);">Selamat Datang di Toko All Blue!</h1>
+                <p style="color: white;">All Blue adalah toko online yang khusus menjual ikan air asin dan ikan air tawar. Baik Anda mencari ikan laut segar atau ikan air tawar untuk konsumsi Anda, kami memiliki beragam pilihan produk berkualitas tinggi yang tersedia. Mulailah menjelajahi katalog kami hari ini untuk menemukan ikan yang sempurna untuk kebutuhan Anda!</p>
             </div>
+            <img src="https://png.pngtree.com/png-vector/20240116/ourmid/pngtree-striped-marlin-fish-art-pic-png-image_11442665.png" alt="Fish Illustration">
         </div>
-    </nav>
-
-    <div class="container">
-        <h1 class="mt-4">Welcome to the All Blue</h1>
-        <p>Start exploring the content below the navbar. The navbar stays fixed at the top of the page even when you scroll.</p>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

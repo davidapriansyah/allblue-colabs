@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #084381;
+        }
+
+        .navbar .nav-link,
+        .navbar .navbar-brand {
+            color: white !important;
+        }
+
+        .navbar .nav-link:hover {
+            color: #ffdd57 !important;
+        }
+
+        .navbar .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .form-inline .btn-outline-success {
+            color: white;
+            border-color: white;
+        }
+
+        .form-inline .btn-outline-success:hover {
+            background-color: white;
+            color: #007bff;
+        }
+
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .content-section img {
+            max-width: 450px;
+            margin-left: 50px;
+        }
+
+        .description {
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://img.freepik.com/premium-vector/logo-ilustrasi-ikan-cocok-untuk-usaha-bisnis-seafood_703238-76.jpg" alt="Logo">
+                All <span style="color: rgb(67, 228, 228); font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" >Blue</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/chart">Chart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/catalog">Catalog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/profile">Profile</a>
+                    </li>
+                </ul>
+                <form class="d-flex align-items-center">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <a class="nav-link" style="margin-left: 20px;" href="#">Logout</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
