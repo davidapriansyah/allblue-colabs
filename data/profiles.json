@@ -3,24 +3,30 @@
     "id": 1,
     "phoneNumber": "081234567890",
     "shippingAddress": "Jl. Merdeka No. 123, Jakarta",
-    "UserId": 2
+    "UserId": 1
   },
   {
     "id": 2,
     "phoneNumber": "081987654321",
     "shippingAddress": "Jl. Sudirman No. 45, Bandung",
-    "UserId": 3
+    "UserId": 2
   },
   {
     "id": 3,
     "phoneNumber": "082123456789",
     "shippingAddress": "Jl. Ahmad Yani No. 56, Surabaya",
-    "UserId": 4
+    "UserId": 3
   },
   {
     "id": 4,
     "phoneNumber": "081345678912",
     "shippingAddress": "Jl. Malioboro No. 789, Yogyakarta",
+    "UserId": 4
+  },
+  {
+    "id": 5,
+    "phoneNumber": "081345678912",
+    "shippingAddress": "Jl. mataram No. 80, Yogyakarta",
     "UserId": 5
   }
 ]
